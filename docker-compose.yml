@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    command: mongod --auth
+    environment:
+      MONGO_INITDB_DATABASE: weather-app
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./mongoDataBase:/data/db 
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
